@@ -1,18 +1,21 @@
 import React from 'react'
-import {Link} from "react-router-dom"
+import { useSelector } from 'react-redux'
+import {Link, useLocation} from "react-router-dom"
 
 
 const Navigation = () => {
+  const auth = useSelector(state => state.auth).auth
+  const location = useLocation()
   return (
-    <nav className='w-full bg-gray-800 p-3 flex justify-between items-center'>
-        <div className='text-lg font-semibold text-white'>D-Wallet</div>
-        <div className='flex justify-between items-center text-white'>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/signin"}>Sign In</Link>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/signup"}>Sign Up</Link>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/"}>Home</Link>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/deposit"}>Deposit</Link>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/withdraw"}>Withdraw</Link>
-            <Link className='px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30' to={"/transfer"}>Transfer</Link>
+    <nav className='navBar'>
+        <div className='navBrand'>D-Wallet</div>
+        <div className='navFlex'>
+            <Link className={location.pathname ==="/" ? 'navLink navActive' : 'navLink'} to={"/"}>Home</Link>
+            {!auth && <Link className={location.pathname.includes("signin") ? 'navLink navActive' : 'navLink'} to={"/signin"}>Sign In</Link>}
+            {!auth && <Link className={location.pathname.includes("signup") ? 'navLink navActive' : 'navLink'} to={"/signup"}>Sign Up</Link>}
+            {auth && <Link className={location.pathname.includes("deposit") ? 'navLink navActive' : 'navLink'} to={"/deposit"}>Deposit</Link>}
+            {auth && <Link className={location.pathname.includes("withdraw") ? 'navLink navActive' : 'navLink'} to={"/withdraw"}>Withdraw</Link>}
+            {auth && <Link className={location.pathname.includes("transfer") ? 'navLink navActive' : 'navLink'} to={"/transfer"}>Transfer</Link>}
         </div>
     </nav>
   )

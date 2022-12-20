@@ -1,5 +1,5 @@
 import React from 'react'
-import ServerInfo from './ServerInfo'
+// import ServerInfo from './ServerInfo'
 
 const MainContainer = () => {
   return (

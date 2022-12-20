@@ -9,3 +9,21 @@
     width: 20px;
     height: 25px;
 }
+
+@layer components {
+    .navLink {
+        @apply px-3 py-1.5 rounded-sm bg-transparent hover:bg-indigo-500 hover:bg-opacity-30;
+    }
+    .navBar {
+        @apply w-full bg-gray-800 p-3 flex justify-between items-center;
+    }
+    .navBrand {
+        @apply text-lg font-semibold text-white;
+    }
+    .navFlex {
+        @apply flex justify-between items-center text-white gap-2;
+    }
+    .navActive {
+        @apply bg-indigo-400 bg-opacity-30
+    }
+}
