@@ -1,8 +1,11 @@
 import React from 'react'
+import SignupContainer from '../components/SignUp/SignupContainer'
 
 const Signup = () => {
   return (
-    <div>Signup</div>
+    <div className='container mx-auto font-varela'>
+      <SignupContainer />
+    </div>
   )
 }
 

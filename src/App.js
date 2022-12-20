@@ -11,19 +11,28 @@ import Signup from "./pages/Signup"
 import Transfer from "./pages/Transfer"
 
 import HelperRoutes from "./config/HelperRoute"
+import store from "./redux/store"
 
 import fetchServerInfo from "./functions/fetchServerInfo";
 import { useDispatch } from "react-redux";
 import ProtectedRoute from "./config/ProtectedRoutes";
+import isLogin from "./functions/isLogin";
+import decodeJWT from "./functions/decodeJWT"
+import getAuthToken from "./functions/getAuthToken"
 
 function App() {
   const dispatch = useDispatch()
+  const { auth } = store.getState().auth
 
   useEffect(() => {
     fetchServerInfo(dispatch)
   }, [dispatch])
 
-
+  useEffect(() => {
+    if (!auth && isLogin()) {
+      decodeJWT(getAuthToken(), store.dispatch);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
